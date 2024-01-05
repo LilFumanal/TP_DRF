@@ -1,20 +1,21 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from HiveManagement.models import Beeyards
 
-from models import Beeyards
-from serializers.beeyard_serializer import BeeyardSerializer
+from HiveManagement.serializers.beeyard_serializer import BeeyardSerializer
 from rest_framework import permissions, viewsets, views
 from django_filters import rest_framework as filters
 
 
 class BeeyardFilters(filters.FilterSet):
     class Meta:
-        model = Beeyards
+        #model = beeyard
         # fields = {
         #     'name': {'icontains', 'contains', 'exact'},
         #     'zone__name': {'icontains', 'contains', 'exact'},
         #     'zone__keepers__name': {'icontains', 'contains', 'exact'}
         # }
+        pass
     
 class BeeyardViewSet(viewsets.ModelViewSet):
     queryset = Beeyards.objects.all()

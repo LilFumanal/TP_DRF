@@ -16,14 +16,14 @@ class BeeyardAdmin(admin.ModelAdmin):
 admin.site.register(Beeyards, BeeyardAdmin)
 
 class HivesAdmin(admin.ModelAdmin):
-  list_display =('status', 'last_status_change', 'queen_age', 'bee_type', 'harvests', 'contamination')
+  list_display =('status', 'last_status_change', 'queen_age', 'bee_type')
   list_filter=('status', 'queen_age', 'bee_type')
   search_fields=('status', 'queen_age', 'bee_type')
   
 admin.site.register(Hives, HivesAdmin)
 
 class InterventionsAdmin(admin.ModelAdmin):
-  list_display=('hive', 'motif')
+  list_display=('hive', 'motif', 'date')
   list_filter=('hive', 'motif')
   search_fields=('hive', 'motif')
 

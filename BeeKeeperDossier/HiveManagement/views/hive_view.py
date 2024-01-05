@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from models import Hives
-from serializers.hive_serializer import HiveSerializer
+from HiveManagement.models import Hives
+from HiveManagement.serializers.hive_serializer import HiveSerializer
 from rest_framework import permissions, viewsets, views
 from django_filters import rest_framework as filters
 
@@ -10,12 +10,13 @@ def hive_template(request):
 
 class HiveFilters(filters.FilterSet):
     class Meta:
-        model = Hives
+        #model = Hives
         # fields = {
         #     'name': {'icontains', 'contains', 'exact'},
         #     'zone__name': {'icontains', 'contains', 'exact'},
         #     'zone__keepers__name': {'icontains', 'contains', 'exact'}
         # }
+        pass
     
 class HiveViewSet(viewsets.ModelViewSet):
     queryset = Hives.objects.all()

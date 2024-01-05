@@ -3,6 +3,10 @@
 {% block title %}Cheptels{% endblock %}
 
 {% block content %}
-    <h1>Bienvenue sur la page d'accueil</h1>
-    <!-- Le contenu spécifique à la page d'accueil -->
+    <h2>Les cheptels</h2>
+    <ul>
+      {% for beeyard in beeyards %}
+        <li>{{ beeyard.name }} ({{ beeyard.hives}})</li>
+      {% endfor %}
+    </ul>
 {% endblock %}

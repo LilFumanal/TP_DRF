@@ -3,6 +3,10 @@
 {% block title %}Mes ruches{% endblock %}
 
 {% block content %}
-    <h1>Vos ruches sont ici</h1>
-    <!-- Le contenu spécifique à la page d'accueil -->
+<h2>Les ruches du cheptel</h2>
+<ul>
+  {% for hive in hives %}
+    <li>{{ hive.id }} ({{ hive.bee_type}})</li>
+  {% endfor %}
+</ul>
 {% endblock %}

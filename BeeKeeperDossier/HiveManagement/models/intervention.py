@@ -13,4 +13,5 @@ class Intervention(models.Model):
   
   hive = models.ForeignKey("Hives", on_delete = CASCADE, related_name="intervention" )
   motif = models.CharField(choices = motif_choice)
+  date = models.DateField()
   

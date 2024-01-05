@@ -1,4 +1,4 @@
-from models import Hives
+from HiveManagement.models import Hives
 from rest_framework import serializers
 
 class HiveSerializer(serializers.ModelSerializer):

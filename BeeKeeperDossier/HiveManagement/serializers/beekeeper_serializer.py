@@ -1,4 +1,4 @@
-from models import Beekeepers
+from HiveManagement.models import Beekeepers
 from rest_framework import serializers
 
 class BeekeeperSerializer(serializers.ModelSerializer):

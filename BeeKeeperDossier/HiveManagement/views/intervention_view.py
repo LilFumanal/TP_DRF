@@ -5,8 +5,6 @@ from HiveManagement.serializers.intervention_serializer import InterventionSeria
 from rest_framework import permissions, viewsets, views
 from django_filters import rest_framework as filters
 
-def hive_template(request):
-  return render(request, 'hive.html')
 
 class InterventionFilters(filters.FilterSet):
     class Meta:
@@ -26,4 +24,5 @@ class InterventionViewSet(viewsets.ModelViewSet):
     filterset_class = InterventionFilters
 
 def intervention_template(request):
-  return render(request, 'interventions.html')
+  interventions = Intervention.objects.all()
+  return render(request, 'interventions.html', {'interventions': interventions})

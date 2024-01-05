@@ -25,4 +25,5 @@ class BeeyardViewSet(viewsets.ModelViewSet):
     filterset_class =BeeyardFilters
 
 def beeyard_template(request):
-  return render(request, 'beeyard.html')
+  beeyards = Beeyards.objects.all()
+  return render(request, 'beeyard.html', {"beeyards": beeyards})

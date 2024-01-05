@@ -23,8 +23,8 @@ class HivesAdmin(admin.ModelAdmin):
 admin.site.register(Hives, HivesAdmin)
 
 class InterventionsAdmin(admin.ModelAdmin):
-  list_display=('date', 'hive', 'motif')
-  list_filter=('date', 'hive', 'motif')
-  search_fields=('date', 'hive', 'motif')
+  list_display=('hive', 'motif')
+  list_filter=('hive', 'motif')
+  search_fields=('hive', 'motif')
 
 admin.site.register(Intervention, InterventionsAdmin)

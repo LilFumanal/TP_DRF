@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hive Management</title>
+</head>
+<body>
+  <header>
+    <h1>Gestion de ruches</h1>
+    <nav>
+      <ul id="navigation">
+        {% for item in menu_items %}
+          <li><a href="{% url item|lower %}">{{ item }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+  {% block content %}{% endblock %}
+</body>
+</html>

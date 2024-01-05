@@ -1,12 +1,5 @@
 from django.contrib import admin
-from .models import Beekeepers, Beeyards, Hives, Intervention
-
-# Register your models here.
-class BeekeepersAdmin(admin.ModelAdmin):
-  list_display=('username','email','name', 'surname')
-  list_filter=('name', 'surname')
-
-admin.site.register(Beekeepers, BeekeepersAdmin)
+from .models import Beeyards, Hives, Intervention
 
 class BeeyardAdmin(admin.ModelAdmin):
   list_display=('name','user')

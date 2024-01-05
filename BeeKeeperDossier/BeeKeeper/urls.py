@@ -16,7 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework import routers
 from HiveManagement.views import index_view, beeyard_view, hive_view, intervention_view
+
+router = routers.DefaultRouter()
+router.register(r'beeyards', beeyard_view.BeeyardViewSet)
+router.register(r'hives', hive_view.HiveViewSet)
+router.register(r'interventions', intervention_view.InterventionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -21,4 +21,3 @@ class Hives(models.Model):
               "date" : date ,}
   contamination = { "date": date ,
                   "decease" : str,}
-  

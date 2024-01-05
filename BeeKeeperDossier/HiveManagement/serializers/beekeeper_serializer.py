@@ -1,7 +1,7 @@
-from HiveManagement.models import Beekeepers
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
 class BeekeeperSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Beekeepers
+        model = User
         fields = ['email', 'username', 'name', 'surname']

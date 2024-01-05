@@ -17,7 +17,7 @@ class Hives(models.Model):
   last_status_change= models.DateField()
   queen_age= models.BigIntegerField()
   bee_type = models.CharField(choices = bee_type_choice, max_length = 150)
-  harvests = { "qté" : int,
+  harvest = { "qté" : int,
               "date" : date ,}
   contamination = { "date": date ,
                   "decease" : str,}

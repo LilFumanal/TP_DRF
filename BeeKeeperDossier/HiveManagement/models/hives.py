@@ -1,23 +1,26 @@
 from datetime import date
 from django.db import models
+from django.db.models import CASCADE
 
 class Hives(models.Model):
-  status_choice = [
+  STATUS_CHOICE = [
     ("A", "En activité"),
     ("W", "En attente"),
     ("X", "Détruite"),
   ]
-  bee_type_choice= [("Abeille Noire" , "Apis Mellifera Mellifera"),
-                    ("Abeille Italienne" ,"Apis Mellifera Ligustica"),
+  BEE_TYPE_CHOICE = [("Abeille Italienne" ,"Apis Mellifera Ligustica"),
                     ("Abeille Caucasienne" ,"Apis mellifera caucasica"),
                     ("Abeille Carnolienne" ,"Apis mellifera carnica"),
                     ("Abeille Buckfast", "Abeille hybride"),
                     ("Abeille Charpentière", "Xylocope")]
-  status= models.CharField(max_length = 50, choices = status_choice)
+  name= models.CharField(max_length = 50)
+  status= models.CharField(max_length = 50, choices = STATUS_CHOICE)
+  beeyard= models.ForeignKey('Beeyards', on_delete = CASCADE,related_name ="hives" )
   last_status_change= models.DateField()
   queen_age= models.BigIntegerField()
-  bee_type = models.CharField(choices = bee_type_choice, max_length = 150)
-  harvest = { "qté" : int,
-              "date" : date ,}
-  contamination = { "date": date ,
-                  "decease" : str,}
+  bee_type = models.CharField(choices = BEE_TYPE_CHOICE, max_length = 150)
+  
+  def __str__(self):
+    bee_type_label = dict(self.BEE_TYPE_CHOICE).get(self.bee_type, '')
+    status_label = dict(self.STATUS_CHOICE).get(self.status, '')
+    return f"{self.name} - {self.status} - {self.last_status_change} - {self.queen_age} - {bee_type_label} - {status_label}"

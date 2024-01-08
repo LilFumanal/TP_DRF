@@ -7,13 +7,15 @@ from django_filters import rest_framework as filters
 
 class HiveFilters(filters.FilterSet):
     class Meta:
-        #model = Hives
-        # fields = {
-        #     'name': {'icontains', 'contains', 'exact'},
-        #     'zone__name': {'icontains', 'contains', 'exact'},
-        #     'zone__keepers__name': {'icontains', 'contains', 'exact'}
-        # }
-        pass
+        model = Hives
+        fields = {
+            'id': {'exact'},
+            'status': {'icontains', 'contains', 'exact'},
+            'name': {'icontains', 'contains', 'exact'},
+            'beeyard':{'exact'},
+            'queen_age': {'exact'},
+            'bee_type': {'icontains', 'contains', 'exact'}
+        }
     
 class HiveViewSet(viewsets.ModelViewSet):
     queryset = Hives.objects.all()
@@ -23,5 +25,5 @@ class HiveViewSet(viewsets.ModelViewSet):
     filterset_class = HiveFilters
 
 def hive_template(request):
-  hives = Hives.objects.all()
-  return render(request, 'hive.html', {'hives': hives})
+    hives = Hives.objects.all()
+    return render(request, 'hive.html', {'hives': hives})

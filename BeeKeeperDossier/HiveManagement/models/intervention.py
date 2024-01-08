@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import CASCADE
 
 class Intervention(models.Model):
-  motif_choice = [("Supp","Suppression cellules royales"),
+  MOTIF_CHOICES = [("Supp","Suppression cellules royales"),
                   ("Check","Check de santé"),
                   ("Rec","Récolte"),
                   ("Dist","Distribution de sirop"),
@@ -12,6 +12,9 @@ class Intervention(models.Model):
                   ("Trai", "Traitement")]
   
   hive = models.ForeignKey("Hives", on_delete = CASCADE, related_name="intervention" )
-  motif = models.CharField(choices = motif_choice)
+  motif = models.CharField(choices = MOTIF_CHOICES)
   date = models.DateField()
   
+  def __str__(self):
+    motif_label = dict(self.MOTIF_CHOICES).get(self.motif, '')
+    return f"{self.hive} - {self.date} - {motif_label}"

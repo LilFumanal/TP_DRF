@@ -9,13 +9,11 @@ from django_filters import rest_framework as filters
 
 class BeeyardFilters(filters.FilterSet):
     class Meta:
-        #model = beeyard
-        # fields = {
-        #     'name': {'icontains', 'contains', 'exact'},
-        #     'zone__name': {'icontains', 'contains', 'exact'},
-        #     'zone__keepers__name': {'icontains', 'contains', 'exact'}
-        # }
-        pass
+        model = Beeyards
+        fields = {
+            'name': {'icontains', 'contains', 'exact'},
+            'user__username': {'icontains', 'contains', 'exact'}
+        }
     
 class BeeyardViewSet(viewsets.ModelViewSet):
     queryset = Beeyards.objects.all()
@@ -25,5 +23,5 @@ class BeeyardViewSet(viewsets.ModelViewSet):
     filterset_class =BeeyardFilters
 
 def beeyard_template(request):
-  beeyards = Beeyards.objects.all()
-  return render(request, 'beeyard.html', {"beeyards": beeyards})
+    beeyards = Beeyards.objects.all()
+    return render(request, 'beeyard.html', {"beeyards": beeyards})

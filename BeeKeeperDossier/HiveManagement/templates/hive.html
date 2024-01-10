@@ -3,10 +3,22 @@
 {% block title %}Mes ruches{% endblock %}
 
 {% block content %}
-<h2>Les ruches du cheptel</h2>
+<h2>Les ruches du cheptel {{beeyard.name}}</h2>
 <ul>
   {% for hive in hives %}
-    <li>{{ hive.id }} ({{ hive.bee_type}})</li>
+  <div class="card">
+    <!-- Photo en haut à gauche -->
+    <img class="photo" src="https://apiscera.com/wp-content/uploads/2014/05/honey_bees.jpg" alt="Photo">
+
+    <!-- Données -->
+    <div class="data">
+        <p>Nom de la ruche:{{hive.name}}</p>
+        <p>Type d'abeille: {{hive.bee_type}}</p>
+        <p>Status: {{hive.status}}</p>
+        <p>Dernier changement de status: {{hive.last_status_change}}}</p>
+        <p>Âge de la reine :{{hive.queen_age}}</p>
+    </div>
+</div>
   {% endfor %}
 </ul>
 {% endblock %}

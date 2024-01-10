@@ -6,7 +6,7 @@
     <h2>Les cheptels</h2>
     <ul>
       {% for beeyard in beeyards %}
-        <li>{{ beeyard.name }} ({{ beeyard.hives}})</li>
+        <li><a href="{% url 'beeyard_details' beeyard.id %}">{{ beeyard.name }}</li></a>
       {% endfor %}
     </ul>
 {% endblock %}

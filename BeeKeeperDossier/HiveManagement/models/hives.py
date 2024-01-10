@@ -4,9 +4,9 @@ from django.db.models import CASCADE
 
 class Hives(models.Model):
   STATUS_CHOICE = [
-    ("A", "En activité"),
-    ("W", "En attente"),
-    ("X", "Détruite"),
+    ("En activité", "A"),
+    ("En attente", "W"),
+    ("Détruite","X"),
   ]
   BEE_TYPE_CHOICE = [("Abeille Italienne" ,"Apis Mellifera Ligustica"),
                     ("Abeille Caucasienne" ,"Apis mellifera caucasica"),
@@ -23,4 +23,4 @@ class Hives(models.Model):
   def __str__(self):
     bee_type_label = dict(self.BEE_TYPE_CHOICE).get(self.bee_type, '')
     status_label = dict(self.STATUS_CHOICE).get(self.status, '')
-    return f"{self.name} - {self.status} - {self.last_status_change} - {self.queen_age} - {bee_type_label} - {status_label}"
+    return f"{self.id} - {self.name} - {self.status} - {self.last_status_change} - {self.queen_age} - {bee_type_label} - {status_label}"

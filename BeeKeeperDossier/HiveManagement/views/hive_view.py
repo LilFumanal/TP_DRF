@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from HiveManagement.models import Hives
+from django.shortcuts import get_object_or_404, render
+from HiveManagement.models import Hives, Beeyards
 from HiveManagement.serializers.hive_serializer import HiveSerializer
 from rest_framework import permissions, viewsets, views
 from django_filters import rest_framework as filters
@@ -12,7 +12,6 @@ class HiveFilters(filters.FilterSet):
             'id': {'exact'},
             'status': {'icontains', 'contains', 'exact'},
             'name': {'icontains', 'contains', 'exact'},
-            'beeyard':{'exact'},
             'queen_age': {'exact'},
             'bee_type': {'icontains', 'contains', 'exact'}
         }
@@ -24,6 +23,7 @@ class HiveViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = HiveFilters
 
-def hive_template(request):
-    hives = Hives.objects.all()
-    return render(request, 'hive.html', {'hives': hives})
+def hive_template(request, beeyard_id):
+    beeyard=get_object_or_404(Beeyards, id=beeyard_id)
+    hives = Hives.objects.filter(beeyard = beeyard)
+    return render(request, 'hive.html', {'hives': hives, 'beeyard':beeyard})

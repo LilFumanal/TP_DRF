@@ -1,12 +1,28 @@
 {% extends 'index.html' %}
 
-{% block title %}Interventions{% endblock %}
+{% block title %}Mes interventions{% endblock %}
 
 {% block content %}
-<h2>Les interventions</h2>
+<h2>Mes interventions</h2>
 <ul>
   {% for intervention in interventions %}
-    <li>{{ intervention.date }} ({{ intervention.motif}})</li>
+  <div class="card">
+    <!-- Données -->
+    <div class="data">
+        <p>Nom de la ruche : {{intervention.hive.name}}</p>
+        <p>Motif de l'intervention : {{intervention.motif}}</p>
+        <p>Date: {{intervention.date}}</p>
+        {%if intervention.motif == "Rec"%}
+        <p>Quantité récoltée: {{intervention.harvest_quantity}}</p>
+        {%endif%}
+        {%if intervention.motif == "Check" %}
+        <p>Ruche contaminée : {{intervention.is_sick}}</p>
+        {%if intervention.is_sick == True%}
+        <p>Infection: {{intervention.decease}}</p>
+        {%endif%}
+        {%endif%}
+    </div>
+</div>
   {% endfor %}
 </ul>
 {% endblock %}

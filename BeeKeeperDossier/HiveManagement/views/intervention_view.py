@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from HiveManagement.models import Intervention
+from HiveManagement.models import Intervention, Beeyards, Hives
 from HiveManagement.serializers.intervention_serializer import InterventionSerializer
 from rest_framework import permissions, viewsets, views
 from django_filters import rest_framework as filters
@@ -8,13 +8,15 @@ from django_filters import rest_framework as filters
 
 class InterventionFilters(filters.FilterSet):
     class Meta:
-        #model = Intervention
-        # fields = {
-        #     'name': {'icontains', 'contains', 'exact'},
-        #     'zone__name': {'icontains', 'contains', 'exact'},
-        #     'zone__keepers__name': {'icontains', 'contains', 'exact'}
-        # }
-        pass
+        model = Intervention
+        fields = {
+            'motif': {'exact'},
+            'hive': {'exact'},
+            'date': {'contains', 'exact'},
+            'harvest_quantity': {'contains', 'exact'},
+            'is_sick': {'exact'},
+            'decease': {'contains', 'exact'}
+        }
     
 class InterventionViewSet(viewsets.ModelViewSet):
     queryset = Intervention.objects.all()
@@ -24,5 +26,8 @@ class InterventionViewSet(viewsets.ModelViewSet):
     filterset_class = InterventionFilters
 
 def intervention_template(request):
-  interventions = Intervention.objects.all()
-  return render(request, 'interventions.html', {'interventions': interventions})
+    user_id = request.user.id
+    beeyard = Beeyards.objects.filter(user__id=user_id)
+    hives = Hives.objects.filter(beeyard__in=beeyard)
+    interventions = Intervention.objects.filter(hive__in=hives)
+    return render(request , 'interventions.html', {'interventions': interventions})

@@ -24,6 +24,7 @@ class HiveViewSet(viewsets.ModelViewSet):
     filterset_class = HiveFilters
 
 def hive_template(request, beeyard_id):
+    """" This function permits to send only the hives from a particular beeyard, defined in the url."""
     beeyard=get_object_or_404(Beeyards, id=beeyard_id)
     hives = Hives.objects.filter(beeyard = beeyard)
     return render(request, 'hive.html', {'hives': hives, 'beeyard':beeyard})

@@ -14,9 +14,9 @@ class Intervention(models.Model):
   hive = models.ForeignKey("Hives", on_delete = CASCADE, related_name="intervention" )
   motif = models.CharField(choices = MOTIF_CHOICES)
   date = models.DateField()
-  harvest_quantity = models.IntegerField()
+  harvest_quantity = models.IntegerField(blank=True)
   is_sick = models.BooleanField()
-  decease = models.CharField(max_length = 50)
+  decease = models.CharField(max_length = 50, blank=True)
   
   def __str__(self):
     motif_label = dict(self.MOTIF_CHOICES).get(self.motif, '')

@@ -26,7 +26,6 @@ router.register(r'interventions', intervention_view.InterventionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', index_view.index_template),
     path('beeyard/', beeyard_view.beeyard_template),
     path('beeyard/<int:beeyard_id>', hive_view.hive_template, name="beeyard_details"),
     path('intervention/', intervention_view.intervention_template),

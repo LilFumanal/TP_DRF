@@ -1,9 +1,9 @@
 {% extends 'index.html' %}
 
-{% block title %}Cheptels{% endblock %}
+{% block title %}Ruchers{% endblock %}
 
 {% block content %}
-    <h2>Les cheptels</h2>
+    <h2>Les ruchers</h2>
     <ul>
       {% for beeyard in beeyards %}
         <li><a href="{% url 'beeyard_details' beeyard.id %}">{{ beeyard.name }}</li></a>

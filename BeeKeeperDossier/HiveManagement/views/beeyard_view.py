@@ -18,10 +18,11 @@ class BeeyardFilters(filters.FilterSet):
 class BeeyardViewSet(viewsets.ModelViewSet):
     queryset = Beeyards.objects.all()
     serializer_class = BeeyardSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class =BeeyardFilters
 
 def beeyard_template(request):
-    beeyards = Beeyards.objects.all()
-    return render(request, 'beeyard.html', {"beeyards": beeyards})
+    user_id = request.user.id
+    beeyards = Beeyards.objects.filter(user__id=user_id)
+    return render(request, 'beeyards.html', {"beeyards": beeyards})

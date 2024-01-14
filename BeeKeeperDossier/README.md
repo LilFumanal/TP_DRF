@@ -35,10 +35,30 @@ Run the following command to launch the Django server :
 The pages are :
 - `url/admin` (if you use a superuser)
 - `url/beeyard` will show the list of your beeyards, clickable.
+  GET: will display all your beeyards.
+  POST: will add a beeyard. Required params: {name: value}
 - `url/beeyard/id` will show the list of hive in a specific beeyard.
+  GET: will show the list of hives.
+  POST: will add a hive in the specified beeyard.
+    Required params: {
+      name: str_value,
+      status: choice_value,
+      queen_age: int_value,
+      bee_type: choice_value,
+    }
 - `url/intervention` will show the list of interventions you've created with your logged-in account.
+  GET: will display all your interventions.
+  POST: will add an intervention.
+    Required params: {
+      hive: hive_id,
+      motif: choice_value,
+      harvest_quantity: int_value (optionnal),
+      is_sick: bool_value,
+      decease: str_value(optionnal)
+      }
 
 
 ***
 ## Troubleshooting
-You can list here, if needed, the common issues that the users of your app can encounter.
+- `url/beeyard/id/interventions` were supposed to be a post url to add the same interventions to all hives from a specific beeyard.
+- Il semblerait que lors de nombreuses requêtes post, même authentifed, lorsque les permissions du serializer sont permissions.isAuthenticated ou AllowAny, nous n'ayions tout de même pas l'authorisation de créer un objet.

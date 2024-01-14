@@ -16,7 +16,7 @@ class Hives(models.Model):
   name= models.CharField(max_length = 50)
   status= models.CharField(max_length = 50, choices = STATUS_CHOICE)
   beeyard= models.ForeignKey('Beeyards', on_delete = CASCADE,related_name ="hives" )
-  last_status_change= models.DateField()
+  last_status_change= models.DateField(auto_now_add = True)
   queen_age= models.BigIntegerField()
   bee_type = models.CharField(choices = BEE_TYPE_CHOICE, max_length = 150)
   

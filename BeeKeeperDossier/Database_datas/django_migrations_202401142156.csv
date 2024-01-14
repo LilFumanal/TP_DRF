@@ -1,0 +1,25 @@
+"id","app","name","applied"
+1,contenttypes,"0001_initial",2024-01-10 22:33:09.042 +0100
+2,auth,"0001_initial",2024-01-10 22:33:09.168 +0100
+3,HiveManagement,"0001_initial",2024-01-10 22:33:09.234 +0100
+4,admin,"0001_initial",2024-01-10 22:33:09.260 +0100
+5,admin,"0002_logentry_remove_auto_add",2024-01-10 22:33:09.269 +0100
+6,admin,"0003_logentry_add_action_flag_choices",2024-01-10 22:33:09.278 +0100
+7,contenttypes,"0002_remove_content_type_name",2024-01-10 22:33:09.297 +0100
+8,auth,"0002_alter_permission_name_max_length",2024-01-10 22:33:09.306 +0100
+9,auth,"0003_alter_user_email_max_length",2024-01-10 22:33:09.318 +0100
+10,auth,"0004_alter_user_username_opts",2024-01-10 22:33:09.324 +0100
+11,auth,"0005_alter_user_last_login_null",2024-01-10 22:33:09.336 +0100
+12,auth,"0006_require_contenttypes_0002",2024-01-10 22:33:09.337 +0100
+13,auth,"0007_alter_validators_add_error_messages",2024-01-10 22:33:09.345 +0100
+14,auth,"0008_alter_user_username_max_length",2024-01-10 22:33:09.362 +0100
+15,auth,"0009_alter_user_last_name_max_length",2024-01-10 22:33:09.372 +0100
+16,auth,"0010_alter_group_name_max_length",2024-01-10 22:33:09.385 +0100
+17,auth,"0011_update_proxy_permissions",2024-01-10 22:33:09.393 +0100
+18,auth,"0012_alter_user_first_name_max_length",2024-01-10 22:33:09.402 +0100
+19,sessions,"0001_initial",2024-01-10 22:33:09.418 +0100
+20,HiveManagement,"0002_intervention_decease_intervention_harvest_quantity_and_more",2024-01-10 23:12:19.878 +0100
+21,HiveManagement,"0003_alter_intervention_decease_and_more",2024-01-12 04:41:02.967 +0100
+22,HiveManagement,"0004_alter_intervention_decease_and_more",2024-01-14 15:42:32.060 +0100
+23,HiveManagement,"0005_alter_intervention_date",2024-01-14 16:57:27.997 +0100
+24,HiveManagement,"0006_alter_hives_last_status_change",2024-01-14 21:31:33.030 +0100

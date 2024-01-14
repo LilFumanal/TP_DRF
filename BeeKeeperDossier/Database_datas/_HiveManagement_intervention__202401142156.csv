@@ -1,0 +1,11 @@
+"id","motif","date","hive_id","decease","harvest_quantity","is_sick"
+1,Check,2024-01-12,1,Flemme,0,true
+2,Rec,2024-01-12,1,non,2,false
+3,Supp,2024-01-12,4,"0",0,false
+4,Check,2024-01-12,3,Va bien,0,false
+5,Pose,2024-01-12,5,"0",0,false
+6,Dist,2024-01-12,3,"0",0,false
+7,Dest,2024-01-12,2,"0",0,false
+14,Dest,1997-12-13,1,Death,0,true
+19,Dest,2024-01-14,1,Death,0,true
+20,Dest,2024-01-14,1,Death,0,true

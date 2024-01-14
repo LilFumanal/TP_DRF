@@ -32,7 +32,8 @@ Run the following command to launch the Django server :
 - `python manage.py createsuperuser`
 - `python manage.py runserver`
 
-The pages are :
+
+The API :
 - `url/admin` (if you use a superuser)
 - `url/beeyard` will show the list of your beeyards, clickable.
   GET: will display all your beeyards.
@@ -61,4 +62,5 @@ The pages are :
 ***
 ## Troubleshooting
 - `url/beeyard/id/interventions` were supposed to be a post url to add the same interventions to all hives from a specific beeyard.
-- Il semblerait que lors de nombreuses requêtes post, même authentifed, lorsque les permissions du serializer sont permissions.isAuthenticated ou AllowAny, nous n'ayions tout de même pas l'authorisation de créer un objet.
+- It may appears that a lot of post request don't have the permission to be posted, even with permission.AllowAny or IsAuthenticated. 
+- I didn't success to create the script behind the command `python manage.py import`, but it's still accessible so you can put another one's functionnal script and still not waste much time. I also left the tables .csv in the Database_datas directory.

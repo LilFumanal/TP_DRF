@@ -29,5 +29,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('beeyard/', beeyard_view.beeyard_template),
     path('beeyard/<int:beeyard_id>', hive_view.hive_template, name="beeyard_details"),
+    path('beeyard/<int:beeyard_id>/interventions/', intervention_view.InterventionViewSet.as_view({'post': 'bulk_creation'}), name='bulk_creation'), #failed_attempt, not working
     path('interventions/', intervention_view.InterventionViewSet.as_view({'post': 'create'}), name='interventions'),
 ]

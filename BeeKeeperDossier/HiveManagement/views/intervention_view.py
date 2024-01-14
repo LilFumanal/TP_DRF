@@ -29,7 +29,9 @@ class InterventionViewSet(viewsets.ModelViewSet):
     filterset_class = InterventionFilters
     
     def create(self, request, *args, **kwargs):
-        # Ajoutez ici votre logique pour mettre à jour la ruche avant de créer l'intervention
+        """ The creation of a new Intervention object directly impact the existing hive it's about.
+        For now, we can only Destroy a hive, and change the dates, but we also could handle multiplication, treatement... 
+        """
         hive_id = request.data.get('hive')
         intervention_motif = request.data.get('motif')
         hive = get_object_or_404(Hives, id=hive_id)
@@ -45,6 +47,24 @@ class InterventionViewSet(viewsets.ModelViewSet):
             serializer.validated_data['hive'] = hive
             response = super().create(request, *args, **kwargs)
 
+        return redirect('interventions')
+    
+    def bulk_creation(self, request, *args, **kwargs):
+        """ For a reason I don't know this doesn't seem to work, as I have a 404 error everytime I try to send a POST Request to the localhost:8000/beeyard/1/interventions path.
+        
+        The provided json is:
+        {
+            "motif": "Rec",
+            "harvest_quantity":"35",
+            "is_sick": false
+            }
+        """
+        beeyard_id = request.data.get('beeyard')
+        beeyard = get_object_or_404(Beeyards, id=beeyard_id)
+        for hive in beeyard.hives.all():
+            data_copy = request.data.copy()
+            data_copy['hive'] = hive.id
+            self.create(data_copy, *args, **kwargs)
         return redirect('interventions')
 
 def intervention_template(request):

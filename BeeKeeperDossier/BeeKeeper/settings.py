@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'HiveManagement',
     "rest_framework",
-    "django_filters"
+    "django_filters",
+    # 'django_extensions'
 ]
 
 MIDDLEWARE = [

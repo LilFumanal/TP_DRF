@@ -1,4 +1,4 @@
-# Hive Management
+# Hive Management - Lil Fumanal
 
 ## Getting started
 This is a project realised for my formation at Diginamic, in order to obtain the title of Appliation Conceptor and Developper, specializefd in Python and Angular.Here I have practice my knowledge about Django and DjangoRestFramework.

@@ -15,18 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework import routers
 from HiveManagement.views import index_view, beeyard_view, hive_view, intervention_view
 
 router = routers.DefaultRouter()
 router.register(r'beeyards', beeyard_view.BeeyardViewSet)
 router.register(r'hives', hive_view.HiveViewSet)
-router.register(r'interventions', intervention_view.InterventionViewSet)
+router.register(r'interventions', intervention_view.InterventionViewSet),
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('beeyard/', beeyard_view.beeyard_template),
     path('beeyard/<int:beeyard_id>', hive_view.hive_template, name="beeyard_details"),
-    path('intervention/', intervention_view.intervention_template),
+    path('interventions/', intervention_view.InterventionViewSet.as_view({'post': 'create'}), name='interventions'),
 ]

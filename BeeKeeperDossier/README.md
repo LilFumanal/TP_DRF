@@ -5,7 +5,7 @@ This is a project realised for my formation at Diginamic, in order to obtain the
 
 This is the back-end of a Hive Management application.
 
-You can here login, create your beeyard(s), hive(s), and the interventions on it.  
+You can here login, create your beeyard(s), hive(s), and the interventions on them.  
 
 
 ## Dependencies

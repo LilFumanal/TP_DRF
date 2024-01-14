@@ -1,9 +1,10 @@
 from datetime import date
-from django.http import HttpResponse
-from django.shortcuts import render
+from rest_framework.response import Response
+from django.shortcuts import get_object_or_404, render, redirect
+from django.db import transaction
 from HiveManagement.models import Intervention, Beeyards, Hives
 from HiveManagement.serializers.intervention_serializer import InterventionSerializer
-from rest_framework import permissions, viewsets, views
+from rest_framework import permissions, viewsets
 from rest_framework.decorators import action
 from django_filters import rest_framework as filters
 
@@ -27,16 +28,24 @@ class InterventionViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = InterventionFilters
     
-    
-    @action(detail=True, methods=["POST"])
-    def on_intervention(self, request):
-        """ This function will change the status of the concerned hive if it's destroyed, and always update the date of the last change."""
-        hive = request.data.get('hive_id')
-        if request.data.get('motif') == "Dest":
-            hive.status = "X"
-        hive.last_status_changed = date.today()
-        hive.save()
+    def create(self, request, *args, **kwargs):
+        # Ajoutez ici votre logique pour mettre à jour la ruche avant de créer l'intervention
+        hive_id = request.data.get('hive')
+        intervention_motif = request.data.get('motif')
+        hive = get_object_or_404(Hives, id=hive_id)
+        request.data['date'] = date.today()
 
+        with transaction.atomic():
+            if intervention_motif == "Dest":
+                hive.status = "X"
+            hive.last_status_change = date.today()
+            hive.save()
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.validated_data['hive'] = hive
+            response = super().create(request, *args, **kwargs)
+
+        return redirect('interventions')
 
 def intervention_template(request):
     """ This function will send only the interventions on beeyard owned by the user."""
